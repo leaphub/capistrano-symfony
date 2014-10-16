@@ -1,4 +1,5 @@
 namespace :symfony do
+
   task :run, :command do |t, args|
     args.with_defaults(:command => :list)
     on roles fetch(:symfony_roles) do
@@ -7,7 +8,9 @@ namespace :symfony do
       end
     end
   end
+
   namespace :app do
+
     desc "Clean app environment"
     task :clean_environment do
       on roles(:web) do |host|
@@ -17,7 +20,9 @@ namespace :symfony do
       end
     end
   end
+
   namespace :assets do
+
     desc 'Symfony assets deployment'
     task :install do
       # invoke is not working
@@ -28,8 +33,11 @@ namespace :symfony do
         end
       end
     end
+
   end
+
   namespace :assetic do
+
     desc 'Assetic dump'
     task :dump do
       on roles fetch(:symfony_roles) do
@@ -38,8 +46,11 @@ namespace :symfony do
         end
       end
     end
+
   end
+
   namespace :parameters do
+
       desc 'Upload parameters.yml'
       task :upload do
           on roles fetch(:symfony_roles) do
@@ -99,8 +110,11 @@ namespace :symfony do
               end
           end
       end
+
   end
+
   namespace :cache do
+
     desc 'Clears the cache'
     task :clear do
       # invoke is not working
@@ -111,6 +125,7 @@ namespace :symfony do
         end
       end
     end
+
     desc 'Warms up an empty cache'
     task :warmup do
       # invoke is not working
@@ -121,6 +136,7 @@ namespace :symfony do
         end
       end
     end
+
   end
 
   after 'deploy:updated', 'symfony:parameters:upload'
@@ -128,9 +144,11 @@ namespace :symfony do
   before 'deploy:publishing', 'symfony:app:clean_environment'
   # this hook work using invoke
   # after 'deploy:updated', 'symfony:cache:warmup'
+
 end
 
 namespace :load do
+
   task :defaults do
     set :symfony_roles, :web
     set :symfony_default_flags, '--quiet --no-interaction'
@@ -142,4 +160,5 @@ namespace :load do
     set :symfony_parameters_upload, :ask
     set :symfony_parameters_path, 'app/config/'
   end
+
 end
