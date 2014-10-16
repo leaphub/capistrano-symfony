@@ -37,7 +37,7 @@ namespace :assets do
           execute "mkdir -p #{release_path}/#{asset_dir}"
           Dir.foreach("./#{asset_dir}") do |item|
             next if item == '.' or item == '..'
-            upload! "#{asset_dir}/#{item}", "#{release_path}/#{asset_dir}/", recursive : true
+            upload! "#{asset_dir}/#{item}", "#{release_path}/#{asset_dir}/", {recursive: true}
           end
         end
       end
