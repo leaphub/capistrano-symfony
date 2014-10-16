@@ -1,10 +1,10 @@
 # Capistrano::Symfony
 
-[![Gem Version](https://badge.fury.io/rb/capistrano-symfony.png)](http://badge.fury.io/rb/capistrano-symfony)
+This gem will let you run Symfony specific tasks with Capistrano 3.x.
 
-This gem will let you run Symfony tasks with Capistrano 3.x.
+This project is forked and extended from  [capistrano-symfony ](http://thebigbrainscompany.com/blog/posts/dployer-une-application-symfony-avec-capistrano)
 
-More informations about [Symfony & Capistrano (fr)](http://thebigbrainscompany.com/blog/posts/dployer-une-application-symfony-avec-capistrano)
+More information about [Symfony & Capistrano (fr)](http://thebigbrainscompany.com/blog/posts/dployer-une-application-symfony-avec-capistrano)
 
 ## Documentation
 
@@ -15,22 +15,18 @@ More informations about [Symfony & Capistrano (fr)](http://thebigbrainscompany.c
 * [Handling parameters.yml](#handling-parametersyml)
 * [Contributing](#contributing)
 
-
 ## Installation
 
-Add this line to your application's Gemfile:
+Currently this gem fork is not published ofr bundler and can only used by specifying the repository in your 
+application's Gemfile:
 
 ```ruby
-gem 'capistrano-symfony', '~> 0.3'
+gem 'capistrano-symfony', :git => 'git@github.com:leaphub/capistrano-symfony.git'
 ```
 
 And then execute:
 
     $ bundle
-
-Or install it yourself via gem:
-
-    $ gem install capistrano-symfony
 
 ## Usage
 
@@ -40,7 +36,7 @@ Add a "require" statement in your application `Capfile`:
 require 'capistrano/symfony'
 ```
 
-Here is a list of available options with their default values:
+The following list shows the available options with their default values:
 
 ```ruby
 set :symfony_roles, :web
@@ -124,5 +120,3 @@ set :linked_files, %w{app/config/parameters.yml}
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-
-[![The Big Brains Company - Logo](http://tbbc-valid.thebigbrainscompany.com/assets/images/logo-tbbc.png)](http://thebigbrainscompany.com)

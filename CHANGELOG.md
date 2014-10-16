@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+
+- Updated documentation
+
 ## 0.3.0
 - Handling parameters.yml
 
