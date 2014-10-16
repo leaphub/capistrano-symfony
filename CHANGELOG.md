@@ -3,6 +3,7 @@
 ## 0.4.0
 
 - Updated documentation
+- Added gulp asset creation and upload
 
 ## 0.3.0
 - Handling parameters.yml

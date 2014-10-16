@@ -49,6 +49,9 @@ set :symfony_env, 'prod'
 set :symfony_parameters_upload, :ask
 set :symfony_parameters_path, 'app/config/'
 set :symfony_parameters_name_scheme, 'parameters_#{fetch(:stage)}.yml'
+set :gulp_file, nil
+set :asset_files, []
+set :asset_dirs, []
 ```
 
 ### Available tasks
@@ -59,14 +62,36 @@ set :symfony_parameters_name_scheme, 'parameters_#{fetch(:stage)}.yml'
 - symfony:cache:warmup
 - symfony:parameters:upload
 - symfony:app:clean_environment
+- assets:gulp:precompile            (Executes the gulp asset pipeline)
+- assets:upload                     (Uploads a configured list of assets to the deployment target)
 
-### Using assetic
+### Handling Assets
+
+This project in addition to the original assetic tasks supports additional asset tools.
+
+#### Using assetic
 
 If you are using `assetic`, add in your config file
 
 ```ruby
 before 'deploy:publishing', 'symfony:assetic:dump'
 ```
+
+#### Using Gulp
+
+Create the gulp assets before uploading them
+
+```ruby
+before 'assets:upload', 'assets:gulp:precompile'
+```
+
+Upload the assets configure in `:asset_files` and `:list of assets`
+
+```ruby
+after 'symfony:cache:clear', 'assets:upload'
+```
+
+**Note:** Uploading the assets before the cache was cleared caused them to be stored in the previous release.
 
 ### Executing symfony console commands on the server directly from the local CLI
 
