@@ -139,6 +139,15 @@ namespace :symfony do
 
   end
 
+  namespace :doctrine do
+
+    desc 'Executes doctrine migrations'
+    task :migrate do
+      invoke 'symfony:run', 'doctrine:migrations:migrate', '--quiet --no-interaction'
+    end
+
+  end
+
   after 'deploy:updated', 'symfony:parameters:upload'
   before 'deploy:publishing', 'symfony:cache:warmup'
   before 'deploy:publishing', 'symfony:app:clean_environment'

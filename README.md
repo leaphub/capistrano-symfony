@@ -62,6 +62,7 @@ set :asset_dirs, []
 - symfony:cache:warmup
 - symfony:parameters:upload
 - symfony:app:clean_environment
+- symfony:doctrine:migrate          (Executes doctrine migrations)
 - assets:gulp:precompile            (Executes the gulp asset pipeline)
 - assets:upload                     (Uploads a configured list of assets to the deployment target)
 

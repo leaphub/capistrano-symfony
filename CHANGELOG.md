@@ -4,6 +4,7 @@
 
 - Updated documentation
 - Added gulp asset creation and upload
+- Added doctrine migration task
 
 ## 0.3.0
 - Handling parameters.yml
