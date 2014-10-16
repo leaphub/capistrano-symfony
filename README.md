@@ -63,6 +63,9 @@ set :asset_dirs, []
 - symfony:parameters:upload
 - symfony:app:clean_environment
 - symfony:doctrine:migrate          (Executes doctrine migrations)
+- composer:install                  (Installs a copy of composer)
+- composer:update                   (Executes a composer update)
+- composer:dump_autoload            (Executes a composer dump autoload)
 - assets:gulp:precompile            (Executes the gulp asset pipeline)
 - assets:upload                     (Uploads a configured list of assets to the deployment target)
 

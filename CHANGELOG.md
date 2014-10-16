@@ -5,6 +5,7 @@
 - Updated documentation
 - Added gulp asset creation and upload
 - Added doctrine migration task
+- Added composer install, update and dump autoload tasks
 
 ## 0.3.0
 - Handling parameters.yml
