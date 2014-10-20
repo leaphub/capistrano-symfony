@@ -143,7 +143,7 @@ namespace :symfony do
 
     desc 'Executes doctrine migrations'
     task :migrate do
-      invoke 'symfony:run', 'doctrine:migrations:migrate', '--quiet --no-interaction'
+      invoke 'symfony:run', 'doctrine:migrations:migrate', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_migrate_flags)
     end
 
   end
@@ -165,6 +165,7 @@ namespace :load do
     set :symfony_assetic_flags, ''
     set :symfony_cache_clear_flags, ''
     set :symfony_cache_warmup_flags, ''
+    set :symfony_doctrine_migrate_flags, ''
     set :symfony_env,'prod'
     set :symfony_parameters_upload, :ask
     set :symfony_parameters_path, 'app/config/'

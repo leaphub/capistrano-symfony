@@ -49,6 +49,7 @@ set :symfony_env, 'prod'
 set :symfony_parameters_upload, :ask
 set :symfony_parameters_path, 'app/config/'
 set :symfony_parameters_name_scheme, 'parameters_#{fetch(:stage)}.yml'
+set :symfony_doctrine_migrate_flags, ''
 set :gulp_file, nil
 set :asset_files, []
 set :asset_dirs, []
