@@ -21,6 +21,20 @@ namespace :assets do
 
   end
 
+  namespace :grunt do
+
+    desc 'Build the assets locally using grunt'
+    task :precompile do
+      options = ' '
+      options << "--gruntfile #{fetch(:grunt_file)}" if fetch(:grunt_file)
+
+      run_locally do
+        execute :grunt, options
+      end
+    end
+
+  end
+
   desc 'Move precompiled assets to the deployment target'
   task :upload do
     if any? :asset_files

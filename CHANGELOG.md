@@ -4,6 +4,7 @@
 
 - Updated documentation
 - Added gulp asset creation and upload
+- Added grunt asset creation
 - Added doctrine migration task
 - Added composer install, update and dump autoload tasks
 

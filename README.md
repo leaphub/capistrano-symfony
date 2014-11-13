@@ -51,6 +51,7 @@ set :symfony_parameters_path, 'app/config/'
 set :symfony_parameters_name_scheme, 'parameters_#{fetch(:stage)}.yml'
 set :symfony_doctrine_migrate_flags, ''
 set :gulp_file, nil
+set :grunt_file, nil
 set :asset_files, []
 set :asset_dirs, []
 ```
@@ -68,6 +69,7 @@ set :asset_dirs, []
 - composer:update                   (Executes a composer update)
 - composer:dump_autoload            (Executes a composer dump autoload)
 - assets:gulp:precompile            (Executes the gulp asset pipeline)
+- assets:grunt:precompile           (Executes the grunt asset pipeline)
 - assets:upload                     (Uploads a configured list of assets to the deployment target)
 
 ### Handling Assets
@@ -82,6 +84,19 @@ If you are using `assetic`, add in your config file
 before 'deploy:publishing', 'symfony:assetic:dump'
 ```
 
+#### Using Grunt
+
+Create the gulp assets before uploading them
+
+```ruby
+before 'assets:upload', 'assets:grunt:precompile'
+```
+
+Upload the assets configured in `:asset_files` and `:list of assets`
+
+```ruby
+after 'symfony:cache:clear', 'assets:upload'
+
 #### Using Gulp
 
 Create the gulp assets before uploading them
@@ -90,7 +105,7 @@ Create the gulp assets before uploading them
 before 'assets:upload', 'assets:gulp:precompile'
 ```
 
-Upload the assets configure in `:asset_files` and `:list of assets`
+Upload the assets configured in `:asset_files` and `:list of assets`
 
 ```ruby
 after 'symfony:cache:clear', 'assets:upload'
