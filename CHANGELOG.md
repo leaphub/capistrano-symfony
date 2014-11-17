@@ -3,10 +3,10 @@
 ## 0.4.0
 
 - Updated documentation
-- Added gulp asset creation and upload
+- Added gulp asset creation
 - Added grunt asset creation
+- Added asset upload task for precompiled assets
 - Added doctrine migration task
-- Added composer install, update and dump autoload tasks
 - Added doctrine fixture load task
 
 ## 0.3.0
