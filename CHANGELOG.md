@@ -7,6 +7,7 @@
 - Added grunt asset creation
 - Added doctrine migration task
 - Added composer install, update and dump autoload tasks
+- Added doctrine fixture load task
 
 ## 0.3.0
 - Handling parameters.yml

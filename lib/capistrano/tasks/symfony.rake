@@ -146,6 +146,11 @@ namespace :symfony do
       invoke 'symfony:run', 'doctrine:migrations:migrate', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_migrate_flags)
     end
 
+    desc 'Load doctrine fixtures'
+    task :fixtures_load do
+      invoke 'symfony:run', 'doctrine:fixtures:load', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_fixture_flags)
+    end
+
   end
 
   after 'deploy:updated', 'symfony:parameters:upload'
@@ -166,6 +171,7 @@ namespace :load do
     set :symfony_cache_clear_flags, ''
     set :symfony_cache_warmup_flags, ''
     set :symfony_doctrine_migrate_flags, ''
+    set :symfony_doctrine_fixture_flags, ''
     set :symfony_env,'prod'
     set :symfony_parameters_upload, :ask
     set :symfony_parameters_path, 'app/config/'
