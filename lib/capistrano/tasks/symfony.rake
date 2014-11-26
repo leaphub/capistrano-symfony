@@ -143,12 +143,20 @@ namespace :symfony do
 
     desc 'Executes doctrine migrations'
     task :migrate do
-      invoke 'symfony:run', 'doctrine:migrations:migrate', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_migrate_flags)
+      on roles fetch(:symfony_roles) do
+        within release_path do
+          execute :php, release_path.join('app/console'), :'doctrine:migrations:migrate', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_migrate_flags), "--env=#{fetch(:symfony_env)}"
+        end
+      end
     end
 
     desc 'Load doctrine fixtures'
     task :fixtures_load do
-      invoke 'symfony:run', 'doctrine:fixtures:load', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_fixture_flags)
+      on roles fetch(:symfony_roles) do
+        within release_path do
+          execute :php, release_path.join('app/console'), :'doctrine:fixtures:load', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_fixture_flags), "--env=#{fetch(:symfony_env)}"
+        end
+      end
     end
 
   end
