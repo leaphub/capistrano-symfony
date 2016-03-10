@@ -5,11 +5,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |spec|
   spec.name          = 'capistrano-symfony'
   spec.version       = '0.3.0'
-  spec.authors       = ['Thomas Tourlourat', 'Boris Guéry']
-  spec.email         = ['thomas@tourlourat.com', 'guery.b@gmail.com']
+  spec.authors       = ['Thomas Tourlourat', 'Boris Guéry', 'Christoph Foehrdes']
+  spec.email         = ['thomas@tourlourat.com', 'guery.b@gmail.com', 'cfoehrdes@leaphub.de']
   spec.description   = %q{Symfony support for Capistrano 3.x}
   spec.summary       = %q{Welcome to easy Symfony deployment}
-  spec.homepage      = 'https://github.com/TheBigBrainsCompany/capistrano-symfony'
+  spec.homepage      = 'https://github.com/leaphub/capistrano-symfony/'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files`.split($/)
