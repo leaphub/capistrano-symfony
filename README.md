@@ -50,6 +50,7 @@ set :symfony_parameters_upload, :ask
 set :symfony_parameters_path, 'app/config/'
 set :symfony_parameters_name_scheme, 'parameters_#{fetch(:stage)}.yml'
 set :symfony_doctrine_migrate_flags, ''
+set :symfony_doctrine_schema_update_flags, '--force'
 set :symfony_doctrine_fixture_flags, ''
 set :gulp_file, nil
 set :grunt_file, nil
@@ -66,6 +67,7 @@ set :asset_dirs, []
 - symfony:parameters:upload
 - symfony:app:clean_environment
 - symfony:doctrine:migrate          (Executes doctrine migrations)
+- symfony:doctrine:schema_update    (Executes doctrine schema update)
 - symfony:doctrine:fixtures_load    (Load doctrine fixtures)
 - composer:install                  (Installs a copy of composer)
 - composer:update                   (Executes a composer update)

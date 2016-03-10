@@ -150,6 +150,15 @@ namespace :symfony do
       end
     end
 
+    desc 'Executes doctrine schema update'
+    task :schema_update do
+      on roles fetch(:symfony_roles) do
+        within release_path do
+          execute :php, release_path.join('app/console'), :'doctrine:schema:update', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_schema_update_flags), "--env=#{fetch(:symfony_env)}"
+        end
+      end
+    end
+
     desc 'Load doctrine fixtures'
     task :fixtures_load do
       on roles fetch(:symfony_roles) do
@@ -179,6 +188,7 @@ namespace :load do
     set :symfony_cache_clear_flags, ''
     set :symfony_cache_warmup_flags, ''
     set :symfony_doctrine_migrate_flags, ''
+    set :symfony_doctrine_schema_update_flags, '--force'
     set :symfony_doctrine_fixture_flags, ''
     set :symfony_env,'prod'
     set :symfony_parameters_upload, :ask
