@@ -39,6 +39,7 @@ require 'capistrano/symfony'
 The following list shows the available options with their default values:
 
 ```ruby
+set :symfony_console_path, 'app/console'
 set :symfony_roles, :web
 set :symfony_default_flags, '--quiet --no-interaction'
 set :symfony_assets_flags, '--symlink'
