@@ -4,7 +4,7 @@ namespace :symfony do
     args.with_defaults(:command => :list)
     on roles fetch(:symfony_roles) do
       within release_path do
-        execute :php, release_path.join('app/console'), args[:command], *args.extras, "--env=#{fetch(:symfony_env)}"
+        execute :php, release_path.join(fetch(:symfony_console_path)), args[:command], *args.extras, "--env=#{fetch(:symfony_env)}"
       end
     end
   end
@@ -29,7 +29,7 @@ namespace :symfony do
       # invoke 'symfony:run', :'assets:install', fetch(:symfony_assets_flags)
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'assets:install', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_assets_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'assets:install', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_assets_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -42,7 +42,7 @@ namespace :symfony do
     task :dump do
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'assetic:dump', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_assetic_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'assetic:dump', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_assetic_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -121,7 +121,7 @@ namespace :symfony do
       # invoke 'symfony:run', :'cache:clear', fetch(:symfony_cache_clear_flags)
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'cache:clear', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_cache_clear_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'cache:clear', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_cache_clear_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -132,7 +132,7 @@ namespace :symfony do
       # invoke 'symfony:run', :'cache:warmup', fetch(:symfony_cache_warmup_flags)
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'cache:warmup', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_cache_warmup_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'cache:warmup', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_cache_warmup_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -145,7 +145,7 @@ namespace :symfony do
     task :migrate do
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'doctrine:migrations:migrate', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_migrate_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'doctrine:migrations:migrate', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_migrate_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -154,7 +154,7 @@ namespace :symfony do
     task :schema_update do
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'doctrine:schema:update', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_schema_update_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'doctrine:schema:update', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_schema_update_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -163,7 +163,7 @@ namespace :symfony do
     task :fixtures_load do
       on roles fetch(:symfony_roles) do
         within release_path do
-          execute :php, release_path.join('app/console'), :'doctrine:fixtures:load', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_fixture_flags), "--env=#{fetch(:symfony_env)}"
+          execute :php, release_path.join(fetch(:symfony_console_path)), :'doctrine:fixtures:load', fetch(:symfony_default_flags) + ' ' + fetch(:symfony_doctrine_fixture_flags), "--env=#{fetch(:symfony_env)}"
         end
       end
     end
@@ -181,6 +181,7 @@ end
 namespace :load do
 
   task :defaults do
+    set :symfony_console_path, 'app/console'
     set :symfony_roles, :web
     set :symfony_default_flags, '--quiet --no-interaction'
     set :symfony_assets_flags, '--symlink'
@@ -190,7 +191,7 @@ namespace :load do
     set :symfony_doctrine_migrate_flags, ''
     set :symfony_doctrine_schema_update_flags, '--force'
     set :symfony_doctrine_fixture_flags, ''
-    set :symfony_env,'prod'
+    set :symfony_env, 'prod'
     set :symfony_parameters_upload, :ask
     set :symfony_parameters_path, 'app/config/'
   end
