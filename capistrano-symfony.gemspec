@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name          = 'capistrano-symfony'
-  spec.version       = '0.3.0'
+  spec.version       = '0.5.0'
   spec.authors       = ['Thomas Tourlourat', 'Boris Guéry', 'Christoph Foehrdes']
   spec.email         = ['thomas@tourlourat.com', 'guery.b@gmail.com', 'cfoehrdes@leaphub.de']
   spec.description   = %q{Symfony support for Capistrano 3.x}
